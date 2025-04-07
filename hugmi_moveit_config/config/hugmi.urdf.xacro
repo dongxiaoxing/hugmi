@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="hugmi">
+   
+    <xacro:arg name="left_arm_initial_positions_file" 
+        default="$(find hugmi_moveit_config)/config/left_arm_initial_positions.yaml"/>
+    <xacro:arg name="right_arm_initial_positions_file" 
+        default="$(find hugmi_moveit_config)/config/right_arm_initial_positions.yaml"/>
+    
+    <!-- Root link -->
+    <link name="world"/>
+
+    <!-- Xacro imports -->
+    <xacro:include filename="jaka_s5_arm_macro.xacro" />
+
+    <!-- Left arm -->
+    <xacro:jaka_s5_arm
+        name="left_jaka_s5"
+        prefix="left_"
+        parent="world"
+        initial_positions_file="$(arg left_arm_initial_positions_file)">
+        <origin xyz="0 -1.5 0" rpy="0 0 0" />
+    </xacro:jaka_s5_arm>
+
+    <!-- Right arm -->
+    <xacro:jaka_s5_arm
+        name="right_jaka_s5"
+        prefix="right_"
+        parent="world"
+        initial_positions_file="$(arg right_arm_initial_positions_file)">
+        <origin xyz="0 1.5 0" rpy="0 0 0" />
+    </xacro:jaka_s5_arm>
+</robot>

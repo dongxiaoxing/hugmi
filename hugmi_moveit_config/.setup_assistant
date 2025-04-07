@@ -1,0 +1,25 @@
+moveit_setup_assistant_config:
+  urdf:
+    package: hugmi_moveit_config
+    relative_path: config/hugmi.urdf.xacro
+  srdf:
+    relative_path: config/hugmi.srdf
+  package_settings:
+    author_name: dong xiaoxing
+    author_email: dongxxi@schaeffler.com
+    generated_timestamp: 1744010271
+  control_xacro:
+    command:
+      - position
+    state:
+      - position
+      - velocity
+  modified_urdf:
+    xacros:
+      - control_xacro
+  control_xacro:
+    command:
+      - position
+    state:
+      - position
+      - velocity
