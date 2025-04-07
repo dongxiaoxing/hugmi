@@ -11,33 +11,33 @@
     <!--SUBGROUPS: Groups can also be formed by referencing to already defined group names-->
     <group name="jaka_s5">
         <joint name="virtual_joint"/>
-        <joint name="fixed"/>
-        <joint name="Joint1"/>
-        <joint name="Joint2"/>
-        <joint name="Joint3"/>
-        <joint name="Joint4"/>
-        <joint name="Joint5"/>
-        <joint name="Joint6"/>
+        <joint name="base_joint"/>
+        <joint name="joint1"/>
+        <joint name="joint2"/>
+        <joint name="joint3"/>
+        <joint name="joint4"/>
+        <joint name="joint5"/>
+        <joint name="joint6"/>
     </group>
     <!--GROUP STATES: Purpose: Define a named state for a particular group, in terms of joint values. This is useful to define states like 'folded arms'-->
     <group_state name="home" group="jaka_s5">
-        <joint name="Joint1" value="0"/>
-        <joint name="Joint2" value="1.57"/>
-        <joint name="Joint3" value="0"/>
-        <joint name="Joint4" value="1.57"/>
-        <joint name="Joint5" value="0"/>
-        <joint name="Joint6" value="0"/>
+        <joint name="joint1" value="0"/>
+        <joint name="joint2" value="1.57"/>
+        <joint name="joint3" value="0"/>
+        <joint name="joint4" value="1.57"/>
+        <joint name="joint5" value="0"/>
+        <joint name="joint6" value="0"/>
     </group_state>
     <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
-    <virtual_joint name="virtual_joint" type="fixed" parent_frame="world" child_link="Link_0"/>
+    <virtual_joint name="virtual_joint" type="fixed" parent_frame="world" child_link="link_0"/>
     <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
-    <disable_collisions link1="Link_0" link2="Link_1" reason="Adjacent"/>
-    <disable_collisions link1="Link_1" link2="Link_2" reason="Adjacent"/>
-    <disable_collisions link1="Link_1" link2="Link_4" reason="Never"/>
-    <disable_collisions link1="Link_2" link2="Link_3" reason="Adjacent"/>
-    <disable_collisions link1="Link_3" link2="Link_4" reason="Adjacent"/>
-    <disable_collisions link1="Link_3" link2="Link_5" reason="Never"/>
-    <disable_collisions link1="Link_4" link2="Link_5" reason="Adjacent"/>
-    <disable_collisions link1="Link_4" link2="Link_6" reason="Never"/>
-    <disable_collisions link1="Link_5" link2="Link_6" reason="Adjacent"/>
+    <disable_collisions link1="link_0" link2="link_1" reason="Adjacent"/>
+    <disable_collisions link1="link_1" link2="link_2" reason="Adjacent"/>
+    <disable_collisions link1="link_1" link2="link_4" reason="Never"/>
+    <disable_collisions link1="link_2" link2="link_3" reason="Adjacent"/>
+    <disable_collisions link1="link_3" link2="link_4" reason="Adjacent"/>
+    <disable_collisions link1="link_3" link2="link_5" reason="Never"/>
+    <disable_collisions link1="link_4" link2="link_5" reason="Adjacent"/>
+    <disable_collisions link1="link_4" link2="link_6" reason="Never"/>
+    <disable_collisions link1="link_5" link2="link_6" reason="Adjacent"/>
 </robot>
