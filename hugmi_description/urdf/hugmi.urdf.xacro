@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="hugmi">
+   
+    <xacro:arg name="left_arm_initial_positions_file" 
+        default="$(find hugmi_moveit_config)/config/left_arm_initial_positions.yaml"/>
+    <xacro:arg name="right_arm_initial_positions_file" 
+        default="$(find hugmi_moveit_config)/config/right_arm_initial_positions.yaml"/>
+    
+    <!-- body link -->
+    <link name="body">
+        <inertial>
+            <origin xyz="0.0028167 -0.00019454 0.019544" rpy="0 0 0" />
+            <mass value="0.52663" />
+            <inertia ixx="0.0006297" ixy="6.7091E-08" ixz="3.4682E-06" iyy="0.00095727" iyz="2.4476E-07" izz="0.0014514" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://hugmi_description/meshes/body_meshes/body_simplified.stl" />
+            </geometry>
+            <material name="">
+                <color rgba="0.79216 0.81961 0.93333 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://hugmi_description/meshes/body_meshes/body_simplified.stl" />
+            </geometry>
+        </collision>
+    </link>
+
+    <!-- Xacro imports -->
+    <xacro:include filename="jaka_s5_arm_macro.xacro" />
+
+    <!-- Left arm -->
+    <xacro:jaka_s5_arm
+        name="left_jaka_s5"
+        prefix="left_"
+        parent="body"
+        initial_positions_file="$(arg left_arm_initial_positions_file)">
+        <origin xyz="0.232 0.284 0.816" rpy="1.888 0.594 1.753" />
+    </xacro:jaka_s5_arm>
+
+    <!-- Right arm -->
+    <xacro:jaka_s5_arm
+        name="right_jaka_s5"
+        prefix="right_"
+        parent="body"
+        initial_positions_file="$(arg right_arm_initial_positions_file)">
+        <origin xyz="-0.233 0.284 0.818" rpy="-1.888 0.594  1.389" />
+    </xacro:jaka_s5_arm>
+</robot> 

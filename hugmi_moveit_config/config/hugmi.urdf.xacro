@@ -1,32 +1,14 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="hugmi">
-   
-    <xacro:arg name="left_arm_initial_positions_file" 
-        default="$(find hugmi_moveit_config)/config/left_arm_initial_positions.yaml"/>
-    <xacro:arg name="right_arm_initial_positions_file" 
-        default="$(find hugmi_moveit_config)/config/right_arm_initial_positions.yaml"/>
-    
-    <!-- Root link -->
-    <link name="world"/>
+    <xacro:arg name="initial_positions_file" default="initial_positions.yaml" />
 
-    <!-- Xacro imports -->
-    <xacro:include filename="jaka_s5_arm_macro.xacro" />
+    <!-- Import hugmi urdf file -->
+    <xacro:include filename="$(find hugmi_description)/urdf/hugmi.urdf.xacro" />
 
-    <!-- Left arm -->
-    <xacro:jaka_s5_arm
-        name="left_jaka_s5"
-        prefix="left_"
-        parent="world"
-        initial_positions_file="$(arg left_arm_initial_positions_file)">
-        <origin xyz="0 -1.5 0" rpy="0 0 0" />
-    </xacro:jaka_s5_arm>
+    <!-- Import control_xacro -->
+    <xacro:include filename="hugmi.ros2_control.xacro" />
 
-    <!-- Right arm -->
-    <xacro:jaka_s5_arm
-        name="right_jaka_s5"
-        prefix="right_"
-        parent="world"
-        initial_positions_file="$(arg right_arm_initial_positions_file)">
-        <origin xyz="0 1.5 0" rpy="0 0 0" />
-    </xacro:jaka_s5_arm>
+
+    <xacro:hugmi_ros2_control name="FakeSystem" initial_positions_file="$(arg initial_positions_file)"/>
+
 </robot>

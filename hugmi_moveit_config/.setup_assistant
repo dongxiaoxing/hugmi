@@ -1,13 +1,13 @@
 moveit_setup_assistant_config:
   urdf:
-    package: hugmi_moveit_config
-    relative_path: config/hugmi.urdf.xacro
+    package: hugmi_description
+    relative_path: urdf/hugmi.urdf.xacro
   srdf:
     relative_path: config/hugmi.srdf
   package_settings:
     author_name: dong xiaoxing
     author_email: dongxxi@schaeffler.com
-    generated_timestamp: 1744010271
+    generated_timestamp: 1744183826
   control_xacro:
     command:
       - position
