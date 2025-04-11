@@ -1,37 +1,23 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="hugmi">
-   
     <xacro:arg name="left_arm_initial_positions_file" 
         default="$(find hugmi_description)/config/left_initial_positions.yaml"/>
     <xacro:arg name="right_arm_initial_positions_file" 
         default="$(find hugmi_description)/config/right_initial_positions.yaml"/>
     
-    <!-- body link -->
-    <link name="body">
-        <inertial>
-            <origin xyz="0.0028167 -0.00019454 0.019544" rpy="0 0 0" />
-            <mass value="0.52663" />
-            <inertia ixx="0.0006297" ixy="6.7091E-08" ixz="3.4682E-06" iyy="0.00095727" iyz="2.4476E-07" izz="0.0014514" />
-        </inertial>
-        <visual>
-            <origin xyz="0 0 0" rpy="0 0 0" />
-            <geometry>
-                <mesh filename="package://hugmi_description/meshes/body_meshes/body_simplified.stl" />
-            </geometry>
-            <material name="">
-                <color rgba="0.79216 0.81961 0.93333 1" />
-            </material>
-        </visual>
-        <collision>
-            <origin xyz="0 0 0" rpy="0 0 0" />
-            <geometry>
-                <mesh filename="package://hugmi_description/meshes/body_meshes/body_simplified.stl" />
-            </geometry>
-        </collision>
-    </link>
-
     <!-- Xacro imports -->
-    <xacro:include filename="jaka_s5_arm_macro.xacro" />
+    <xacro:include filename="$(find hugmi_description)/urdf/jaka_s5_arm_macro.xacro" />
+    <xacro:include filename="$(find hugmi_description)/urdf/robotiq_85_gripper.urdf.xacro"/> 
+    <xacro:include filename="$(find hugmi_description)/urdf/hugmi_body.urdf.xacro"/> 
+    <xacro:include filename="$(find hugmi_description)/urdf/robotiq_85_gripper.urdf.xacro" />
+   
+    <link name="world"/> 
+    
+    <!-- body link -->
+    <xacro:hugmi_body
+        parent="world">
+        <origin xyz="0 0 0" rpy="0 0 0" />
+    </xacro:hugmi_body>
 
     <!-- Left arm -->
     <xacro:jaka_s5_arm
@@ -42,12 +28,25 @@
         <origin xyz="0.232 0.284 0.816" rpy="1.888 0.594 1.753" />
     </xacro:jaka_s5_arm>
 
+    <xacro:robotiq_85_gripper 
+        prefix="left_"   
+        parent="left_link_6"> 
+        <origin xyz="0 0 0" rpy="0 -1.571 0"/>
+    </xacro:robotiq_85_gripper>
+
     <!-- Right arm -->
     <xacro:jaka_s5_arm
         name="right_jaka_s5"
         prefix="right_"
         parent="body"
         initial_positions_file="$(arg right_arm_initial_positions_file)">
-        <origin xyz="-0.233 0.284 0.818" rpy="-1.888 0.594  1.389" />
+        <origin xyz="-0.233 0.284 0.818" rpy="-1.888 0.594 1.389" />
     </xacro:jaka_s5_arm>
+
+    <xacro:robotiq_85_gripper 
+        prefix="right_"   
+        parent="right_link_6"> 
+        <origin xyz="0 0 0" rpy="0 -1.571 0"/>
+    </xacro:robotiq_85_gripper>
+
 </robot> 
