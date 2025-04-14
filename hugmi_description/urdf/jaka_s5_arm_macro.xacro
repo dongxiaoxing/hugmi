@@ -4,7 +4,7 @@
     <xacro:macro name="jaka_s5_arm" params="name prefix parent *origin initial_positions_file"> 
 
         <!-- ros2_control -->
-        <xacro:include filename="$(find hugmi_moveit_config)/config/jaka_s5_arm.ros2_control.xacro" />
+        <xacro:include filename="$(find hugmi_description)/urdf/jaka_s5_arm.ros2_control.xacro" />
         <xacro:jaka_s5_arm_ros2_control name="${name}" initial_positions_file="${initial_positions_file}" prefix="${prefix}"/>
         
         <!-- base_joint fixes base_link to the environment--> 

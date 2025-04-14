@@ -2,9 +2,9 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="hugmi">
    
     <xacro:arg name="left_arm_initial_positions_file" 
-        default="$(find hugmi_moveit_config)/config/left_arm_initial_positions.yaml"/>
+        default="$(find hugmi_description)/config/left_initial_positions.yaml"/>
     <xacro:arg name="right_arm_initial_positions_file" 
-        default="$(find hugmi_moveit_config)/config/right_arm_initial_positions.yaml"/>
+        default="$(find hugmi_description)/config/right_initial_positions.yaml"/>
     
     <!-- body link -->
     <link name="body">
