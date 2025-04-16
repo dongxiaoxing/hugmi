@@ -25,4 +25,4 @@ endif()
 
 ament_package()
 
-install(DIRECTORY meshes urdf launch config DESTINATION share/${PROJECT_NAME})
+install(DIRECTORY meshes urdf launch rviz config DESTINATION share/${PROJECT_NAME})
